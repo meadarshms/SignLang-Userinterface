@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/viewvideouser_post/">
+{%  csrf_token %}
+
+<table width="200" border="1">
+  <tr>
+    <td><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" /></td>
+    <td><input type="submit" name="button" id="button" value="Search" /></td>
+  </tr>
+</table>
+<table width="200" border="1">
+  <tr>
+    <td>S/no</td>
+    <td>Title</td>
+    <td>Description</td>
+    <td>Video</td>
+    <td>Date</td>
+
+    <td>&nbsp;</td>
+  </tr>
+    {% for i in data %}
+   <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.title }}</td>
+    <td>{{ i.description }}</td>
+    <td><video width="320" height="240" controls>
+  <source src="{{ i.video }}" type="video/mp4">
+</video></td>
+    <td>{{ i.date }}</td>
+
+    <td><a href="/myapp/viewreviewbysuser/{{ i.id }}">view reviews</a></td>
+   <td><a href="/myapp/sendreviewbyuser/{{ i.id }}">send review</a></td>
+  </tr>
+    {% endfor %}
+</table>
+
+</form>
+</body>
+</html>

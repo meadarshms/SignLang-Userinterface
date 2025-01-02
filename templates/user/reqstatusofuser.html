@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+{% extends 'user/userindex.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/usersearchreq/">
+    {% csrf_token %}
+<table>
+    <tr>
+        <td><select name="se">
+            <option value="pending">pending</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+        </select></td>
+        <td>
+            <input type="submit" value="search"/>
+        </td>
+    </tr>
+</table>
+ <table width="200" border="1">
+
+  <tr>
+
+  <td>S/No</td>
+  <td>Date</td>
+    <td>Trainer</td>
+    <td>Request Status</td>
+      <td>Description</td>
+      <td>chat</td>
+   
+  </tr>
+         {% for i in data %}
+   <tr>
+
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.date }}</td>
+    <td>&nbsp;{{ i.TRAINER.name }}</td>
+    <td>{{ i.status }}</td>
+   <td>{{ i.description }}</td>
+           <td>{% if i.status == 'approved' %}<a href="/myapp/chat2/{{ i.TRAINER.LOGIN.id }}">Chat</a>{% else %}{{ i.status  }}{% endif %}</td>
+
+  </tr>
+     {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}
+</html>

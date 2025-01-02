@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'admin/adminindex.html' %}
+{% block body %}
+<body>
+<form action="/myapp/sendreply_post/" method="post">
+    {% csrf_token %}
+<table class="table table-bordered">
+    <input type="hidden" name="id" value="{{ id }}">
+  <tr>
+    <td>Reply</td>
+    <td><label for="textarea"></label>
+      <textarea name="textarea" id="exampleFormControlTextarea1" class="form-control" style="height: 300px"></textarea></td>
+  </tr>
+  <tr>
+    
+    <td><input type="submit" name="button" id="button" value="Send" class="btn btn-success"/></td>
+  </tr>
+</table>
+
+</form>
+</body>
+{% endblock %}
+</html>
